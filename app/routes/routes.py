@@ -2,8 +2,9 @@ from app.routes.r_models import r_models as rm
 
 
 def launch_routes(app):
+    print('IN launch_routes')
     app.add_route(rm.MainPage.as_view(),
-                  '/index')
+                  '/')
     app.add_route(rm.Registration.as_view(),
                   '/reg')
     app.add_route(rm.RegistrationConfirm.as_view(),

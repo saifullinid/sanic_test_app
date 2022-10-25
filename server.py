@@ -1,9 +1,33 @@
 from sanic import Sanic
+
+from app.db.db_service.db_service import launch_database
 from app.routes.routes import launch_routes
+from config import AppConfig
 
-print('hello')
 app = Sanic(__name__)
-app.extend(config={'TEMPLATING_PATH_TO_TEMPLATES': './app/templates'})
+app.update_config(AppConfig)
+app.extend(config={'TEMPLATING_PATH_TO_TEMPLATES': app.config['TEMPLATING_PATH_TO_TEMPLATES']})
 
 
-launch_routes(app)
+def init():
+    app.run(
+        host='127.0.0.1',
+        port=8000,
+        debug=app.config.DEBUG,
+        auto_reload=app.config.AUTO_RELOAD,
+    )
+
+
+if __name__ == '__main__':
+    init()
+
+if __name__ == '__mp_main__':
+    launch_database(app)
+    launch_routes(app)
+
+
+
+
+
+
+

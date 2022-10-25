@@ -2,8 +2,6 @@ from sanic import response, text, Sanic
 from sanic.views import HTTPMethodView
 from sanic_ext import render
 
-app = Sanic.get_app()
-
 
 class MainPage(HTTPMethodView):
     def get(self, request):
@@ -16,7 +14,7 @@ class Registration(HTTPMethodView):
         return render('reg.html', context={'title': 'this is REGISTRATION page'}, status=200)
 
     async def post(self, request):
-        global app
+        app = Sanic.get_app()
         username = request.form.get('username')
         email = request.form.get('email')
         psw = request.form.get('psw')
@@ -40,7 +38,7 @@ class Login(HTTPMethodView):
         return render('registration.html', context={'title': 'this is LOGIN page'}, status=200)
 
     async def post(self, request):
-        global app
+        app = Sanic.get_app()
         username = request.form.get('username')
         psw = request.form.get('psw')
         # TODO if check_username
