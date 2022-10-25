@@ -9,9 +9,9 @@ class MainPage(HTTPMethodView):
 
 
 class Registration(HTTPMethodView):
-    def get(self, request):
+    async def get(self, request):
         app = Sanic.get_app()
-        return render('reg.html', context={'title': 'this is REGISTRATION page'}, status=200)
+        return await render('reg.html', context={'title': 'this is REGISTRATION page'}, status=200)
 
     async def post(self, request):
         app = Sanic.get_app()
