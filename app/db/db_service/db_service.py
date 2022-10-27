@@ -36,6 +36,12 @@ class DBService:
                 where(users.c.username == username)
             return await conn.execute(sel).first()[0]
 
+    async def check_active_status(self, username):
+        async with self.db.connect() as conn:
+            sel = select(users.c.active_status).\
+                where(users.c.username == username)
+            return await conn.execute(sel).first()[0]
+
     async def check_payment_account(self, payment_accounts_id):
         async with self.db.connect() as conn:
             sel = select(payment_accounts).\
