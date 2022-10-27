@@ -28,6 +28,7 @@ payment_accounts = Table('payment_accounts', metadata,
 
 transactions = Table('transactions', metadata,
                      Column('id', Integer(), primary_key=True),
+                     Column('input_id', Integer(), unique=True),
                      Column('amount', Integer(), nullable=False),
                      Column('payment_accounts_id', Integer(), ForeignKey(payment_accounts.columns.id))
                      )

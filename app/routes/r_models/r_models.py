@@ -1,11 +1,11 @@
-from sanic import response, text, Sanic
+from sanic import response, Sanic
 from sanic.views import HTTPMethodView
 from sanic_ext import render
 
 
 class MainPage(HTTPMethodView):
-    def get(self, request):
-        return render('index.html', context={'title': 'this is INDEX page'}, status=200)
+    async def get(self, request):
+        return await render('index.html', context={'title': 'this is INDEX page'}, status=200)
 
 
 class Registration(HTTPMethodView):
