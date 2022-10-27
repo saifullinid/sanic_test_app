@@ -1,10 +1,8 @@
 from sanic import Sanic
-import asyncio
 
-from app.app_queue.run_loop import launch_async
-from app.db.db_service.db_service import launch_database
+
 from app.routes.routes import launch_routes
-from config import AppConfig
+from config import AppConfig, launch_connections
 
 app = Sanic(__name__)
 app.update_config(AppConfig)
@@ -22,13 +20,12 @@ def init():
 
 if __name__ == '__main__':
     init()
-
 if __name__ == '__mp_main__':
-    launch_database(app)
+    launch_connections(app)
     launch_routes(app)
-    loop = asyncio.get_event_loop()
-    queue = asyncio.Queue()
-    launch_async(loop, queue)
+
+
+
 
 
 
