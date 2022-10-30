@@ -13,12 +13,12 @@ def launch_routes(app):
     app.add_route(rm.ProductsViewer.as_view(),
                   '/get_products_list')
     app.add_route(rm.BalanceViewer.as_view(),
-                  '/get_balance')
+                  '/get_balance/')
     app.add_route(rm.ProductsBuyer.as_view(),
-                  '/buy/<product>')
+                  '/buy/<product_id>/')
     app.add_route(rm.DepositMaker.as_view(),
                   '/payment/<webhook>')
     app.add_route(rm.UsersManagement.as_view(),
-                  '/admin/user/<username>')
+                  '/admin/users/')
     app.add_route(rm.ProductsManagement.as_view(),
-                  '/admin/product/<data>')
+                  '/admin/products/')
